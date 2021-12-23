@@ -1,0 +1,14 @@
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: #121212;
+	color: white;
+	margin: 0;
+	padding: 0.5rem;
+	box-sizing: border-box;
+	font-family: "Fira Sans", sans-serif;
+}
