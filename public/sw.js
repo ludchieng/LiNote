@@ -25,3 +25,18 @@ self.addEventListener('activate', (e) => {
     })
   );
 });
+
+self.addEventListener('fetch', evt => {
+  if (evt.request.url.indexOf('firestore.googleapis.com') === -1) {
+    evt.respondWith(
+      caches.match(evt.request).then(cacheRes => {
+        return cacheRes || fetch(evt.request).then(fetchRes => {
+          return caches.open(DYN_CACHE).then(cache => {
+            cache.put(evt.request.url, fetchRes.clone());
+            return fetchRes;
+          })
+        });
+      })
+    );
+  }
+});

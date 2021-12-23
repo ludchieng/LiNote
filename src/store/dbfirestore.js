@@ -50,7 +50,7 @@ export const initFirestore = () => {
 
 
 export const registerServiceWorker = () => {
-  if('serviceWorker' in navigator){
+  if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
       .catch(err => console.error('Cannot register service worker', err));
   }
