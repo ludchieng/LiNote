@@ -51,7 +51,7 @@ export const initFirestore = () => {
 
 export const registerServiceWorker = () => {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/LiNote/sw.js', {scope: '.'})
       .catch(err => console.error('Cannot register service worker', err));
   }
 }
