@@ -23,7 +23,7 @@
     class="note"
     style="background-color: {COLORS[color]}"
     contenteditable
-    bind:innerHTML={text}
+    bind:textContent={text}
     on:blur={saveContent}
   >
   </div>
