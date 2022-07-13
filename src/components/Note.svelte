@@ -1,7 +1,7 @@
 <script>
 
 	import COLORS from '../store/colors';
-	import { removeNote, setNote } from '../store/store';
+	import { removeNote, setNote } from '../store/note';
   
   export let id;
   export let color;

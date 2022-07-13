@@ -1,7 +1,8 @@
 <script>
 	import Note from './components/Note.svelte';
 	import NoteAdder from './components/NoteAdder.svelte';
-	import notes, { addNote } from './store/store';
+	import { addNote } from './store/note';
+	import notes from './store/store';
 
 	function onAddNote(e) {
 		addNote(e.detail.createdAt, e.detail.color);
