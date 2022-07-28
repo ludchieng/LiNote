@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import dotenv from 'dotenv';
 import replace from '@rollup/plugin-replace';
-import { generateSW } from 'rollup-plugin-workbox';
+import { injectManifest } from 'rollup-plugin-workbox';
 
 dotenv.config();
 
@@ -73,31 +73,11 @@ export default {
 			"process.env.FIRESTORE_APP_ID": `"${process.env.FIRESTORE_APP_ID}"`,
 		}),
 
-		generateSW({
+		injectManifest({
+			swSrc: 'src/sw.js',
 			swDest: 'public/sw.js',
 			globDirectory: 'public/',
-			globPatterns: [
-				//'**/*.{html,json,js,css}',
-			],
-			skipWaiting: true,
-			clientsClaim: true,
-			runtimeCaching: [{
-				urlPattern: /\/$|(?:\.(?:html|json|js|css)$)/,
-				handler: 'NetworkFirst',
-				options: {
-					cacheName: 'assets-text'
-				},
-			},{
-				urlPattern: /\.(?:jpeg|jpg|png)$/,
-				handler: 'CacheFirst',
-				options: {
-					cacheName: 'assets-images',
-					expiration: {
-						maxEntries: 10,
-						maxAgeSeconds: 3600*24*30,
-					},
-				},
-			}],
+			mode: "production"
 		}),
 
 		// In dev mode, call `npm run start` once
